@@ -1,3 +1,4 @@
+import Connexion from "../screen/auth/login";
 import Accueil from "../screen/Home/accueil";
 
 
@@ -15,6 +16,7 @@ export default function exportexportMainStack({Stack}) {
 
 
             <Stack.Screen name="Accueil" component={Accueil} />
+            <Stack.Screen name="Connexion" component={Connexion} />
         </Stack.Navigator>
 
     )
