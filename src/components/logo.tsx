@@ -6,7 +6,7 @@ export default function Logo({L=24}) {
 
     return(
         <View style={style.container}>
-            <Text style={[style.textLogo, {fontSize:L}]}>Gest-stok</Text>
+            <Text style={[style.textLogo, {fontSize:L}]}>Gest-stock</Text>
         </View>
     )
 }

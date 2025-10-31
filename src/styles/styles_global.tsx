@@ -4,20 +4,20 @@ import { StyleSheet } from "react-native"
 export const StyleGlo = StyleSheet.create({
     container: {
         flex: 1,
-       backgroundColor: "rgb(248, 250, 252)",
+        backgroundColor: "rgb(248, 250, 252)",
 
     },
 
-    fond2:{
-        backgroundColor:"rgb(255,255,255)",
+    fond2: {
+        backgroundColor: "rgb(255,255,255)",
     },
 
     centrer: {
-        justifyContent:"center",
-        alignItems:"center",
+        justifyContent: "center",
+        alignItems: "center",
     },
 
-    blockForm:{
+    blockForm: {
         backgroundColor: "rgb(255, 255, 255)s",
         padding: 10,
         borderRadius: 10,
@@ -26,30 +26,35 @@ export const StyleGlo = StyleSheet.create({
         maxWidth: 600,
         minWidth: 310,
         width: 325,
-        gap:35,
+        gap: 30,
 
     },
 
-     
-  Title1: {
-    fontSize: 24,
-    color: "rgb(30, 41, 59)",
-   
 
-  },
-  Title2: {
-    color: "rgb(30, 41, 59)",
-    fontWeight: "bold",
-    fontSize:18,
-  },
+    Title1: {
+        fontSize: 24,
+        color: "rgb(30, 41, 59)",
 
-  Title3: {
-    color: "#64748B",
 
-  },
+    },
+    Title2: {
+        color: "rgb(30, 41, 59)",
+        fontWeight: "bold",
+        fontSize: 18,
+    },
 
-  title1_Gras:{
-     fontWeight: "bold",
-  },
+    Title3: {
+        color: "#64748B",
+
+    },
+
+    title1_Gras: {
+        fontWeight: "bold",
+    },
+
+    fontRed: {
+        color: "red",
+        fontSize: 13,
+    }
 
 })

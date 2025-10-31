@@ -1,16 +1,19 @@
 import Logo from "@/src/components/logo";
 import { StyleGlo } from "@/src/styles/styles_global";
+import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
 export default function Connexion() {
+    const navigation = useNavigation();
+
     return (
         <View style={[StyleGlo.container, style.placer]}>
             <Logo />
             <View>
                 <Text style={[StyleGlo.Title1, StyleGlo.title1_Gras,]}>Page de connexion</Text>
                 <View style={[StyleGlo.blockForm, StyleGlo.fond2]}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.navigate("CreatClient")}>
                         <Text style={[StyleGlo.Title3, style.add]}>Créer un compte</Text>
                     </TouchableOpacity>
                     <View>
