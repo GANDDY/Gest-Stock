@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
+import App from "./app";
 
 
 export default function HomeScreen() {
   return (
-    <View>
-      <Text>Bonjour Tous les dev</Text>
-    </View>
+  
+      <App />
+  
   );
 }
