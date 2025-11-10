@@ -6,7 +6,7 @@ import 'react-native-url-polyfill/auto';
 const config = Constants.expoConfig ?? Constants.expoGoConfig;
 
 const SUPABASE_URL = config.extra.EXPO_PUBLIC_SUPABASE_URL;
-const SUPABASE_KEY = config.EXPO_PUBLIC_SUPABASE_KEY;
+const SUPABASE_KEY = config.extra.EXPO_PUBLIC_SUPABASE_KEY;
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: {

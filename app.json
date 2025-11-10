@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Gest-Stok",
-    "slug": "Gest-Stok",
+    "name": "Gest-Stock",
+    "slug": "Gest-Stock",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -46,7 +46,7 @@
     },
     "extra": {
       "EXPO_PUBLIC_SUPABASE_URL":"https://qmsgmczqbhootkadbwju.supabase.co",
-      "EXPO_PUBLIC_SUPABASE_KEY":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFtc2dtY3pxYmhvb3RrYWRid2p1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4NTY2ODAsImV4cCI6MjA3NzQzMjY4MH0.7CukIcVLrjHYAWEX2L24QsN2KLT8jzKUwYeXj3svYPA"
+      "EXPO_PUBLIC_SUPABASE_KEY":"sb_publishable_xKG_C88mpUzxLxvGvwQfJw_tMD901m1"
     }
   }
 }

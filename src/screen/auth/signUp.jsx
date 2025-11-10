@@ -1,3 +1,4 @@
+import { CreateClient } from "@/src/api/authentification";
 import Logo from "@/src/components/logo";
 import { StyleGlo } from "@/src/styles/styles_global";
 import { checkMail, checkMdpValide, checknom, checkPrenom, compareMdp } from "@/src/utilis/validation";
@@ -8,7 +9,7 @@ import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput
 
 
 export default function CreatClient() {
-
+    
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [mail, setMail] = useState('');
@@ -29,7 +30,7 @@ export default function CreatClient() {
         setErreur({});
 
     };
-    const verif = () => {
+    const verif = async () => {
         const Erreurs = {
             nom: checknom(nom),
             prenom: checkPrenom(prenom),
@@ -40,15 +41,39 @@ export default function CreatClient() {
         }
 
         setErreur(Erreurs);
-
-        const validePasErreurs = Object.values(Erreurs).every(e=>e === true);
+        const validePasErreurs = Object.values(Erreurs).every(e => e === true);
         if(validePasErreurs){
-            console.log("✅c'est reglo")
-        }else{
-            console.log("✖️ Une erreur est survenue durant l'enregistrement des données");
-            
+            // console.log(validePasErreurs);
+             const resultBack = await CreateClient(mail, mdp, nom, prenom);
+             if(resultBack){
+                navigation.navigate("Connexion", { mail, mdp});
+             }
+            //  console.log(resultBack);
+
+        }else {
+            console.log("✖️ Une erreur est survenue durant l'enregistrement", validePasErreurs);
         }
+
+
     }
+    // const envoi = (validePasErreurs) => {
+       
+        
+    //         console.log("validePasErreurs");
+    //         const resultBack = CreateClient(mail, mdp)
+    //         if (resultBack == null) {
+    //             console.log(resultBack);
+    //             return null;
+
+    //         } if (resultBack) {
+    //             console.log("✅ Success");
+
+    //         }
+
+    //     } 
+    // }
+
+    
 
     return (
         <KeyboardAvoidingView
@@ -134,7 +159,7 @@ const style = StyleSheet.create({
         flexGrow: 1,
         justifyContent: "center",
         alignItems: "center",
-       
+
     },
     input: {
         // borderWidth: 0.1,
