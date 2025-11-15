@@ -1,3 +1,4 @@
+import { connect } from "@/src/api/connexion";
 import Logo from "@/src/components/logo";
 import { StyleGlo } from "@/src/styles/styles_global";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -8,15 +9,48 @@ export default function Connexion() {
     const navigation = useNavigation();
 
     const route = useRoute();
-    const {mail, mdp} = route.params ?? "";
-  
+    const { mail, mdp } = route.params ?? "";
+
+
+
+
+    const connecter = async () => {
+
+
+        if (!mail || !mdp) {
+            alert("Veuillez remplir tous les champs !");
+            return;
+        }
+
+
+        try {
+            const result = await connect(mail, mdp);
+            if (result.error) {
+                console.log('Erreur de connexion : ', result.error);
+                alert(result.error)
+                return;
+            }
+
+            console.log('Utilisateur connécté : ');
+            navigation.navigate("Menu", { user: result.data.user });
+
+        } catch (error) {
+            console.error('Erreur inattendue :', error);
+            alert('Une erreur est survenue lors de la connexion.', error);
+        }
+    };
+
+
+
+
+
     return (
         <View style={[StyleGlo.container, style.placer]}>
             <Logo />
             <View>
                 <Text style={[StyleGlo.Title1, StyleGlo.title1_Gras,]}>Page de connexion</Text>
                 <View style={[StyleGlo.blockForm, StyleGlo.fond2]}>
-                    <TouchableOpacity onPress={()=>navigation.navigate("CreatClient")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("CreatClient")}>
                         <Text style={[StyleGlo.Title2, style.add]}>Créer un compte</Text>
                     </TouchableOpacity>
                     <View>
@@ -24,7 +58,7 @@ export default function Connexion() {
                         <TextInput
                             style={[StyleGlo.fond2, style.input]}
                             placeholder="Entrer Votre Identifiant"
-                            value={mail ? mail :""}
+                            value={mail ? mail : null}
                         />
                     </View>
                     <View>
@@ -33,10 +67,10 @@ export default function Connexion() {
                             style={[StyleGlo.fond2, style.input]}
                             placeholder="Entrer votre mot de passe"
                             secureTextEntry
-                            value={mdp ? mdp : ""}
+                            value={mdp ? mdp : null}
                         />
                     </View>
-                    <TouchableOpacity style={style.button}>
+                    <TouchableOpacity style={style.button} onPress={connecter}>
                         <Text style={[StyleGlo.Title2, style.btnText]}>Se connecter</Text>
                     </TouchableOpacity>
 
@@ -54,8 +88,8 @@ const style = StyleSheet.create({
         justifyContent: "space-evenly",
         alignItems: "center",
     },
-    add:{
-        textAlign:"right",
+    add: {
+        textAlign: "right",
         color: "#64748B",
     },
 

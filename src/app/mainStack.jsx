@@ -1,6 +1,7 @@
 import Connexion from "../screen/auth/login";
 import CreatClient from "../screen/auth/signUp";
 import Accueil from "../screen/Home/accueil";
+import Menu from "../screen/Home/menu";
 
 
 export default function exportexportMainStack({Stack}) {
@@ -19,6 +20,7 @@ export default function exportexportMainStack({Stack}) {
             <Stack.Screen name="Accueil" component={Accueil} />
             <Stack.Screen name="Connexion" component={Connexion} />
             <Stack.Screen name="CreatClient" component={CreatClient} />
+            <Stack.Screen name="Menu" component={Menu} />
         </Stack.Navigator>
 
     )
