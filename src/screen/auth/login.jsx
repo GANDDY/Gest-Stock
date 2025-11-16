@@ -2,6 +2,7 @@ import { connect } from "@/src/api/connexion";
 import Logo from "@/src/components/logo";
 import { StyleGlo } from "@/src/styles/styles_global";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
@@ -9,24 +10,29 @@ export default function Connexion() {
     const navigation = useNavigation();
 
     const route = useRoute();
+    const [ident, setIdent] = useState('');
+    const [pwd, setPwd] = useState('');
+
     const { mail, mdp } = route.params ?? "";
-
-
-
+    if (mail && mdp) {
+        setIdent(mail);
+        setPwd(mdp);
+    }
 
     const connecter = async () => {
 
 
-        if (!mail || !mdp) {
-            alert("Veuillez remplir tous les champs !");
+        if (!ident && !pwd) {
+            console.log(ident)
+            alert("Veuillez remplir tous les champs !", ident);
             return;
         }
 
 
         try {
-            const result = await connect(mail, mdp);
+            const result = await connect(ident, pwd);
             if (result.error) {
-                console.log('Erreur de connexion : ', result.error);
+                console.log('Erreur de connexion : ', result);
                 alert(result.error)
                 return;
             }
@@ -58,7 +64,8 @@ export default function Connexion() {
                         <TextInput
                             style={[StyleGlo.fond2, style.input]}
                             placeholder="Entrer Votre Identifiant"
-                            value={mail ? mail : null}
+                            value={ident}
+                            onChangeText={setIdent}
                         />
                     </View>
                     <View>
@@ -67,7 +74,8 @@ export default function Connexion() {
                             style={[StyleGlo.fond2, style.input]}
                             placeholder="Entrer votre mot de passe"
                             secureTextEntry
-                            value={mdp ? mdp : null}
+                            value={pwd}
+                            onChangeText={setPwd}
                         />
                     </View>
                     <TouchableOpacity style={style.button} onPress={connecter}>

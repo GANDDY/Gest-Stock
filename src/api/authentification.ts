@@ -1,9 +1,9 @@
 import { supabase } from "../utilis/supabase";
 interface ConnectResult {
-        
-        data: any | null;
-        error: string | null;
-    }
+
+    data: any | null;
+    error: string | null;
+}
 
 
 // ___________________________________create
@@ -22,20 +22,30 @@ export const CreateClient = async (mail: string, mdp: string, nom: string, preno
         }
     })
 
+
     if (error) {
-        if (error.message === "user already registered" || error.status === 422) {
-            console.log("⚠️ Cet email est déjà utilisé !");
-            alert('⚠️ Cet email est déjà utilisé !')
-        } else {
-            console.log("❌ Erreur d'inscription :", error.message);
-        }
+        console.log("❌ Erreur d'inscription :", error.message, data);
+        alert(error);
         return { data: null, error };
     }
-    console.log(data);
+
+
+
+    const alReadyExists = data?.user && data?.user?.identities?.length === 0; // Vérif que l'émail existe
+
+    if (alReadyExists) {
+
+        alert('⚠️ Cet email est déjà utilisé !')
+        return {data: null, error: "email déja utilisé"}
+    }
+
+
+
+    console.log("DATA:", data);
+    console.log("ERROR:", error);
     console.log("✅ Enregistrement Ok");
-    console.log("Utilisateur créé :", data.user?.user_metadata, data.user?.action_link);
-    alert(data.user?.user_metadata.nom + "  Un mail de condirmation vous as été envoyé.")
-    
+    alert(data.user?.user_metadata.nom + "  Un mail de confirmation vous as été envoyé.")
+
 
     return { data };
 

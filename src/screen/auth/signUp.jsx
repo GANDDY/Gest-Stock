@@ -45,7 +45,7 @@ export default function CreatClient() {
         if(validePasErreurs){
             // console.log(validePasErreurs);
              const resultBack = await CreateClient(mail, mdp, nom, prenom);
-             if(resultBack){
+             if(resultBack.data != null){
                 navigation.navigate("Connexion", { mail, mdp});
              }
             //  console.log(resultBack);
