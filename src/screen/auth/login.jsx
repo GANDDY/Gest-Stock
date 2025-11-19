@@ -14,12 +14,17 @@ export default function Connexion() {
     const [pwd, setPwd] = useState('');
 
     const { mail, mdp } = route.params ?? "";
+
     if (mail && mdp) {
         setIdent(mail);
         setPwd(mdp);
     }
 
     const connecter = async () => {
+
+
+        ///////////////////////////////////just pour le dev
+        navigation.navigate('Menu');
 
 
         if (!ident && !pwd) {
